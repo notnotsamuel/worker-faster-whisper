@@ -1,5 +1,5 @@
 # Use specific version of nvidia cuda image
-FROM nvidia/cuda:12.4.1-cudnn-runtime-ubuntu20.04
+FROM nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu20.04
 
 # Remove any third-party apt sources to avoid issues with expiring keys.
 RUN rm -f /etc/apt/sources.list.d/*.list
@@ -41,6 +41,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     pip install --upgrade pip && \
     pip install -r /requirements.txt --no-cache-dir && \
     rm /requirements.txt
+    pip install --force-reinstall ctranslate2==3.24.0
 
 # Copy and run script to fetch models
 COPY builder/fetch_models.py /fetch_models.py
