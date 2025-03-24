@@ -40,7 +40,7 @@ COPY builder/requirements.txt /requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install --upgrade pip && \
     pip install -r /requirements.txt --no-cache-dir && \
-    rm /requirements.txt
+    rm /requirements.txt && \
     pip install --force-reinstall ctranslate2==3.24.0
 
 # Copy and run script to fetch models
